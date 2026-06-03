@@ -1,0 +1,6 @@
+# Public RSS/Atom feed URLs, one per line.
+# RSS_URL environment variable overrides this file when set.
+https://www.nasa.gov/news-release/feed/
+https://github.blog/feed/
+https://web.dev/blog/feed.xml
+https://openai.com/news/rss.xml
