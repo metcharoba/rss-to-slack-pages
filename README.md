@@ -161,3 +161,22 @@ Before enabling GitHub Pages or pushing this workflow:
 - If RSS parsing fails, the script prints the RSS HTTP status, Content-Type, and first 100 body characters to stderr.
 - Do not use private feeds, confidential workspaces, patient information, clinic information, or unpublished research.
 - Do not commit or save webhook URLs, API keys, tokens, or credentials.
+
+## GitHub Pages
+
+Public page:
+
+https://metcharoba.github.io/rss-to-slack-pages/
+
+This project uses the GitHub Pages `/docs` branch publishing method.
+
+Publishing source:
+
+- Branch: `main`
+- Folder: `/docs`
+
+Notes:
+
+- `.env.local` is not committed.
+- `logs/` and `state/` are not committed.
+- GitHub Actions workflow is not used for this version.
