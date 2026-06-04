@@ -148,7 +148,7 @@ Before enabling GitHub Pages or pushing this workflow:
 
 - Confirm `public/index.html` exists and contains only public RSS item metadata.
 - Confirm `.env.local`, `logs/`, and `state/` are not committed or published.
-- Confirm the repository Pages source will be set to GitHub Actions.
+- Confirm the repository Pages source is set to `main` branch / `/docs` folder.
 - Confirm no webhook URLs, API keys, tokens, credentials, private notes, patient information, clinic information, or unpublished research are present in published files.
 
 ## Notes
@@ -168,12 +168,19 @@ Public page:
 
 https://metcharoba.github.io/rss-to-slack-pages/
 
-This project uses the GitHub Pages `/docs` branch publishing method.
+This project uses the GitHub Pages `main` branch / `/docs` folder publishing method.
 
 Publishing source:
 
 - Branch: `main`
 - Folder: `/docs`
+
+HTML update / GitHub Pages operation:
+
+- Run `./scripts/update_pages_html.sh` to regenerate `public/index.html` and copy it to `docs/index.html`.
+- `docs/index.html` is the published GitHub Pages file.
+- Do not use a GitHub Actions workflow for this version.
+- When staging updates, use explicit file paths such as `git add docs/index.html public/index.html README.md`, not `git add .`.
 
 Notes:
 
