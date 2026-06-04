@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import html
+from datetime import datetime, timezone
 import json
 from pathlib import Path
 from urllib.parse import urlparse
@@ -42,6 +43,14 @@ def page_html(items: list[dict[str, str]]) -> str:
     if not rows:
         rows = '<p class="empty">No sent RSS items logged yet.</p>'
 
+    feed_count = len({item["feed_url"] for item in items if item["feed_url"]})
+    item_count = len(items)
+    updated_at = datetime.now(timezone.utc).astimezone().isoformat(timespec="seconds")
+    summary = (
+        f'<p class="summary">Last updated: {html.escape(updated_at)} · '
+        f'Items: {item_count} · Feeds: {feed_count}</p>'
+    )
+
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -67,6 +76,11 @@ def page_html(items: list[dict[str, str]]) -> str:
       margin: 0 0 20px;
       font-size: 28px;
       font-weight: 700;
+    }}
+    .summary {{
+      margin: -10px 0 20px;
+      color: #65717f;
+      font-size: 14px;
     }}
     .item {{
       margin: 0 0 12px;
@@ -116,6 +130,7 @@ def page_html(items: list[dict[str, str]]) -> str:
 <body>
   <main>
     <h1>CreativeVault RSS Log</h1>
+    {summary}
     {rows}
   </main>
 </body>
